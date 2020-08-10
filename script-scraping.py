@@ -44,7 +44,7 @@ for ticket in tickets:
         
 for codigo in codigos:
     url = 'https://fiis.com.br/' + codigo
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0'}
+    headers = {'User-Agent': 'xxxx'} # olhar no seu PC
     req = Request(url, headers = headers)
     response = urlopen(req)
     html = response.read()
@@ -94,6 +94,6 @@ for codigo in codigos:
 dataset = pd.DataFrame(cards)
 dataset = dataset.apply(lambda x: x.str.replace("R\\$|\\.","", regex = True).str.replace(",", ".").astype(float) if x.name in ["Ultimo Rendimento", "Valor Patrimonial por Cota", "Numero de Cotas", "Numero de Cotistas", "Cotacao Atual","Min. 52 semanas", "Max. 52 semanas"] else x)
 dataset["P/VP"] = dataset['Cotacao Atual'] / dataset['Valor Patrimonial por Cota']
-dataset.to_csv('C:/Users/marco/Desktop/Estatistica/Cursos/Alura/Scraping com Python - Coleta de dados na web/Projeto - R jobs/fiis_dataset.csv',
+dataset.to_csv('C:/Users/marco/Desktop/Estatistica/fiis_dataset.csv',
                sep = ';',
                index = False)

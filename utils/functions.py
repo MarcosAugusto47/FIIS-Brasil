@@ -5,8 +5,6 @@ from decimal import Decimal
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
-import regex
-
 def trata_html(input):
    return " ".join(input.split()).replace('> <', '><')
 

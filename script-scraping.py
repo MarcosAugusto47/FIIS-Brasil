@@ -24,5 +24,5 @@ dataset = convert_percentages_to_float(dataset, ['dividend_yield', 'return_12_mo
 dataset = break_tipo_FII(dataset)
 dataset['registro_CVM'] = dataset['registro_CVM'].apply(lambda x: str(convert_to_datetime(x)))
 #dataset["p_vp"] = (dataset['cotacao'] / dataset['valor_patrimonial_por_cota']).replace(np.inf, np.nan)
-dataset['date'] = str(datetime.date.today())
+dataset['date'] = str(datetime.date.today() - datetime.timedelta(days=1))
 print(dataset.head())

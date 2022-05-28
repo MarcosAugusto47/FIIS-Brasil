@@ -1,7 +1,5 @@
 # libraries
-import re 
 import datetime
-import pandas as pd
 
 import urllib.request as urllib_request
 from urllib.error import URLError, HTTPError

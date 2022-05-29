@@ -74,6 +74,18 @@ def break_tipo_FII(dataset):
     dataset = dataset.drop(['tipo_FII'], axis='columns')
     return dataset
 
+def create_ifix_dataframe(URL):
+    soup = create_bsoup_object(URL)
+    ifix_tickers = soup.findAll('tr')[1:]
+    cards = []
+    for ifix_ticker in ifix_tickers:
+        card={}
+        card['ticker'] = ifix_ticker.findAll("td")[1].get_text()
+        card['peso'] = ifix_ticker.findAll("td")[0].get_text()
+        cards.append(card)
+    dataset = pd.DataFrame(cards)
+    return dataset
+
 def batch_write(dynamodb, table_name, items):
     """
     Batch write items to given table name

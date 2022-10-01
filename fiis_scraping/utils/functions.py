@@ -8,6 +8,7 @@ from urllib.request import Request, urlopen
 def trata_html(input):
    return " ".join(input.split()).replace('> <', '><')
 
+
 def create_bsoup_object(url):
     headers = {'User-Agent': 'xxxx'}
     req = Request(url, headers = headers)
@@ -28,6 +29,7 @@ def get_tickers(soup):
         codigos.append(ticket.get_text().lower())
     
     return codigos
+
 
 def create_fiis_dataframe(tickers):
     cards = []
@@ -68,11 +70,13 @@ def create_fiis_dataframe(tickers):
     dataset = pd.DataFrame(cards)
     return dataset
 
+
 def break_tipo_FII(dataset):
     dataset["tipo"] = dataset['tipo_FII'].str.replace(":.*", "", regex = True).str.strip()
     dataset["subtipo"] = dataset['tipo_FII'].str.replace(".*:", "", regex = True).str.strip()
     dataset = dataset.drop(['tipo_FII'], axis='columns')
     return dataset
+
 
 def create_ifix_dataframe(URL):
     soup = create_bsoup_object(URL)
@@ -85,6 +89,7 @@ def create_ifix_dataframe(URL):
         cards.append(card)
     dataset = pd.DataFrame(cards)
     return dataset
+
 
 def batch_write(dynamodb, table_name, items, overwrite_by_pkeys):
     """

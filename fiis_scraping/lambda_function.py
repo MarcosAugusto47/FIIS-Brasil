@@ -37,7 +37,6 @@ def lambda_handler(event, context):
     df_ifix = create_ifix_dataframe(URL)
     COLUMNS_LIST = ['peso']
     df_ifix = convert_percentages_to_float(df_ifix, COLUMNS_LIST)
-    df_ifix['peso'] = df_ifix['peso'].round(4)
     df_ifix['date'] = str(datetime.date.today())
     
     ifix_data_dict = df_ifix.to_dict(orient='records')

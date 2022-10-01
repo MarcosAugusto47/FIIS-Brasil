@@ -86,14 +86,14 @@ def create_ifix_dataframe(URL):
     dataset = pd.DataFrame(cards)
     return dataset
 
-def batch_write(dynamodb, table_name, items):
+def batch_write(dynamodb, table_name, items, overwrite_by_pkeys):
     """
     Batch write items to given table name
     """
        
     table = dynamodb.Table(table_name)
     
-    with table.batch_writer() as batch:
+    with table.batch_writer(overwrite_by_pkeys=overwrite_by_pkeys) as batch:
         for item in items:
             #print(item)
             item = json.loads(json.dumps(item), parse_float=Decimal)

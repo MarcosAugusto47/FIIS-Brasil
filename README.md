@@ -3,3 +3,10 @@ Web scraping do site https://fiis.com.br/lista-de-fundos-imobiliarios/, com o ob
 
 * fiis_scraping: pacote AWS Lambda, utilizado em produção.
 * notebook-scraping: notebook de trabalho (não entra em produção).
+
+Além disso, há uma aplicação simples com FastAPI que serve como uma interface para puxar 
+os dados.
+
+* /: puxa todos os FII's, do dia mais recente.
+* /ticker/{}: puxa os dados do ticker do FII inserido, do dia mais recente.
+* /ifix/: puxa a composição do IFIX.

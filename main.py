@@ -18,7 +18,7 @@ ifix = pd.DataFrame(ifix['Items'])
 ifix = ifix[ifix.date==ifix.date.max()]
 first_column = ifix.pop('ticker')
 ifix.insert(0, 'ticker', first_column)
-df_ifix = ifix.to_dict(orient='records')
+ifix = ifix.to_dict(orient='records')
 
 @app.get('/')
 def home():

@@ -12,3 +12,6 @@ os dados.
 * /: puxa todos os FII's, do dia mais recente.
 * /ticker/{}: puxa os dados do ticker do FII inserido, do dia mais recente.
 * /ifix/: puxa a composição do IFIX.
+
+A aplicação pode ser iniciada pelo seguinte comando:
+`uvicorn main:app --reload`

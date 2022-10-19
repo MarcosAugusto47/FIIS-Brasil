@@ -1,3 +1,5 @@
+import yaml
+from yaml.loader import SafeLoader
 from ast import Call, Dict
 from typing import Callable, NoReturn
 import pandas as pd
@@ -10,8 +12,6 @@ def duplicated_ifix() -> pd.DataFrame:
     """
     Get the duplicate rows of the df_ifix
     """
-
-    
     duplicated_df_ifix = df_ifix[df_ifix.duplicated(subset=['ticker'])]
     return duplicated_df_ifix
 
@@ -55,6 +55,7 @@ def test_ifix_columns(ifix_columns: Callable) -> NoReturn:
     Test if the columns of the transformed dataframe match
     the columns of the database
     """
-    database_schema_columns = ['ticker', 'peso', 'date']
+    with open('metadata_ifix.yml') as f:
+        database_schema_columns = yaml.load(f, Loader=SafeLoader)['columns']
 
     assert database_schema_columns == ifix_columns

@@ -3,7 +3,7 @@ import pandas as pd
 
 def convert_string_to_float(df, colnames):
     for colname in colnames:
-        df[colname] = df[colname].str.replace('R$', "", regex=False)
+        df[colname] = df[colname].str.replace('[R$]', "", regex=True)
         df[colname] = df[colname].str.replace('.', "", regex=False)
         df[colname] = df[colname].str.replace(',', ".", regex=False)
         df[colname] = df[colname].apply(lambda x: float(x))
@@ -12,7 +12,7 @@ def convert_string_to_float(df, colnames):
 
 def convert_percentages_to_float(df, colnames):
     for colname in colnames:
-            df[colname] = df[colname].str.replace('R$', "", regex=False)
+            df[colname] = df[colname].str.replace('[R$]', "", regex=False)
             df[colname] = df[colname].str.replace('.', "", regex=False)
             df[colname] = df[colname].str.replace(',', ".", regex=False)
             df[colname] = df[colname].str.replace('%', "", regex=False)
